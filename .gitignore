@@ -1,0 +1,31 @@
+# Entorno virtual
+venv/
+env/
+.env/
+
+# Archivos de caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Archivos de distribución
+dist/
+build/
+*.egg-info/
+
+# Archivos locales de configuración
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archivos de credenciales o configuración local
+.env
+config.local.py
+secrets.json
+
+# Archivos de datos grandes (si corresponde)
+*.csv
+*.xlsx
+*.pkl
