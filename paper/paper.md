@@ -69,29 +69,43 @@ Para abordar la predicción de cancelaciones de reservas de hotel, se seguirá u
 1. **Preprocesamiento de datos**:
    - Normalización de variables numéricas mediante StandardScaler
    - Codificación de variables categóricas mediante One-Hot Encoding
-   - Tratamiento del desbalance de clases mediante técnicas como SMOTE o ajuste de pesos
-   - División del conjunto de datos en entrenamiento (70%), validación (15%) y prueba (15%)
-   **AQUÍ INCLUIR CÓDIGO DE PREPROCESAMIENTO Y OUTPUT DE EJEMPLO**
+   - Tratamiento del desbalance de clases mediante técnicas de ponderación de clases
+   - División del conjunto de datos en entrenamiento (80%) y prueba (20%)
+   ![Preprocesamiento de datos](images/preprocessing.png)
 
 2. **Selección y entrenamiento de modelos**:
    - Se evaluarán los siguientes algoritmos:
      - Regresión Logística (como línea base)
      - Random Forest
      - Gradient Boosting
-     - Support Vector Machine (si es viable computacionalmente)
-   - Para cada modelo se utilizará validación cruzada con k=5 pliegues
-   **AQUÍ INCLUIR CÓDIGO DE ENTRENAMIENTO DE MODELOS**
-
+   - Para cada modelo se utilizará validación cruzada con k=5 pliegues para evaluar su rendimiento
+   
 3. **Evaluación y comparación de modelos**:
    - Métricas principales: AUC-ROC, precisión, recall, F1-score
    - Análisis de la curva ROC y matriz de confusión
    - Interpretación de feature importance para los modelos basados en árboles
-   **AQUÍ INCLUIR TABLA COMPARATIVA DE MODELOS Y GRÁFICOS DE EVALUACIÓN**
-
+   
 4. **Ajuste de hiperparámetros**:
    - Optimización mediante Grid Search o Random Search para los modelos con mejor desempeño inicial
-   - Reevaluación con el conjunto de validación
-   **AQUÍ INCLUIR RESULTADOS DE LA OPTIMIZACIÓN DE HIPERPARÁMETROS**
+   - Reevaluación con el conjunto de prueba
+
+### Preprocesamiento de datos
+
+Siguiendo la metodología propuesta, se realizó el preprocesamiento de los datos para su posterior modelado:
+
+1. **Verificación de valores nulos**: Se confirmó que el conjunto de datos no presenta valores nulos, lo que simplifica el proceso de preparación.
+
+2. **Identificación de variables**: Se identificaron 14 variables numéricas y 3 variables categóricas relevantes para el análisis, excluyendo el identificador único (Booking_ID) que no aporta valor predictivo.
+
+3. **División de datos**: El conjunto de datos se dividió en entrenamiento (80%) y prueba (20%), manteniendo la misma distribución de la variable objetivo en ambos conjuntos (32.76% de reservas canceladas).
+
+4. **Transformación de variables**:
+   - Las variables numéricas se normalizaron mediante StandardScaler para evitar que la escala de cada variable influya desproporcionadamente en el modelo.
+   - Las variables categóricas se transformaron utilizando OneHotEncoder para convertirlas en un formato adecuado para los algoritmos de machine learning.
+
+5. **Manejo del desbalance de clases**: Se identificó un desbalance en la variable objetivo, con un ratio de 2.05:1 entre reservas no canceladas y canceladas. Para abordar este desbalance, se optará por utilizar la técnica de ponderación de clases (class_weight='balanced') en los modelos y evaluar su rendimiento mediante métricas adecuadas como AUC-ROC.
+
+Tras el preprocesamiento, los datos están listos para la fase de modelado, que incluirá la evaluación de diferentes algoritmos de clasificación.
 
 ### Revisión de la literatura y estado del arte
 
