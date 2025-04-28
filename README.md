@@ -3,6 +3,9 @@
 ## Descripción
 Este proyecto desarrolla un modelo de machine learning para predecir la probabilidad de cancelación de reservas de hotel, basándose en características de la reserva y del cliente. El objetivo es proporcionar a los hoteles una herramienta que les permita anticipar cancelaciones y optimizar su gestión de inventario y recursos.
 
+## Contexto
+Proyecto desarrollado como parte del curso de Aprendizaje de Máquina Aplicado en la Especialización en Desarrollo de Software de la Universidad EAFIT.
+
 ## Estructura del Proyecto
 ```
 ├── modelo_reserva_hoteles.ipynb # Notebook principal con análisis exploratorio, preprocesamiento y modelado
@@ -51,4 +54,7 @@ El conjunto de datos contiene información sobre reservas hoteleras, incluyendo:
 En desarrollo - Actualmente en fase de preprocesamiento de datos
 
 ## Autores
-- [Tu Nombre]
+- Samuel Cardenas
+- Santiago Florez
+- Daniel Rojas
+- Luis Gabriel Ovalles
