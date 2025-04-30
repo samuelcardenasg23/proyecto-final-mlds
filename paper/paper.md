@@ -75,6 +75,7 @@ El análisis exploratorio de datos (EDA) reveló los siguientes hallazgos import
 
 
 Gráficamente, el precio promedio por habitación (gráfica de cajas y bigotes) muestra una ligera diferencia entre reservas canceladas (media: 110.59, mediana: 108.0) y no canceladas (media: 99.93, mediana: 95.0), con una correlación positiva de 0.1426. Un mapa de calor de correlaciones numéricas permitió identificar relaciones potencialmente útiles para el modelo, destacando que las variables con mayor correlación con la variable objetivo son lead_time (0.4385), no_of_special_requests (-0.2531), avg_price_per_room (0.1426) y repeated_guest (-0.1073).
+![Grafica cajas y bigotes](images/cajas-bigotes.png)
 
 Estos hallazgos sugieren que es factible entrenar un modelo de clasificación
 supervisado capaz de estimar la probabilidad de cancelación con base en las variables
@@ -163,7 +164,7 @@ El análisis SHAP confirmó que el tiempo de anticipación (`lead_time`) es la c
 ![Summary Plot SHAP](images/shap_summary_plot.png)
 
 En el gráfico de resumen SHAP, se observa que:
-- Valores altos de `lead_time` (rojo) tienen un impacto positivo significativo en la probabilidad de cancelación.
+- Valores altos de `lead_time` tienen un impacto positivo significativo en la probabilidad de cancelación.
 - Un bajo número de solicitudes especiales aumenta la probabilidad de cancelación.
 - Precios más altos por habitación tienden a asociarse con más cancelaciones.
 - Ciertos meses de llegada tienen un impacto variable pero significativo.
@@ -250,8 +251,6 @@ Antonio et al. (2017) demostraron que modelos de machine learning como Random Fo
 
 Por su parte, Morales et al. (2019) compararon diversos algoritmos de clasificación, encontrando que los modelos de Gradient Boosting ofrecían los mejores resultados al capturar interacciones complejas entre variables como la temporada, el segmento de mercado y el historial del cliente.
 
-Un estudio más reciente de Huang et al. (2021) incorporó técnicas de balanceo de clases como SMOTE, mejorando significativamente el recall en la clase minoritaria (cancelaciones) sin comprometer la precisión general del modelo.
-
 Este proyecto se apoya en estos trabajos previos, adaptando sus metodologías al contexto específico de nuestro conjunto de datos y ampliando la interpretabilidad de los resultados para generar recomendaciones accionables.
 
 ### Plan
@@ -327,20 +326,6 @@ La implementación de un sistema predictivo de cancelaciones hoteleras conlleva 
 
 ### Aspectos legales y comerciales
 
-**Potencial comercial**:
-- Optimización de ingresos mediante estrategias de overbooking controlado
-- Mejora en la gestión de inventario y planificación de recursos humanos
-- Desarrollo de políticas de cancelación personalizadas según el perfil de riesgo
-- Posible comercialización como solución SaaS para cadenas hoteleras pequeñas y medianas
-
-**Marco legal**:
-- Cumplimiento con leyes de protección de datos personales
-- Consideraciones sobre prácticas comerciales justas al implementar políticas diferenciadas
-- Transparencia en términos y condiciones sobre uso de datos para predicciones
-- Resguardo de información sensible según normativas locales e internacionales
-
-### Aspectos legales y comerciales
-
 #### Potencial comercial
 
 El modelo predictivo desarrollado en este proyecto presenta múltiples oportunidades de aplicación comercial que podrían traducirse en beneficios económicos significativos para la industria hotelera:
@@ -384,11 +369,11 @@ La implementación de un sistema predictivo para cancelaciones de reservas debe 
 
 Antonio, N., de Almeida, A., & Nunes, L. (2017). Predicting hotel booking cancellations to decrease uncertainty and increase revenue. Tourism & Management Studies, 13(2), 25-39. https://doi.org/10.18089/tms.2017.13203
 
-Morales, D. R., & Wang, J. (2019). Forecasting cancellation rates for services booking by modelling exogenous factors. International Journal of Forecasting, 35(1), 307-322. https://doi.org/10.1016/j.ijforecast.2018.03.001
+Morales, D. R., & Wang, J. (2019). Forecasting cancellation rates for services booking by modelling exogenous factors. International Journal of Forecasting, 35(1), 307-322. https://core.ac.uk/download/pdf/288283676.pdf
 
-Huang, X., Kuijpers, D., & Li, X. (2021). Using machine learning techniques to predict hotel booking cancellations: A case study of a major hotel chain. International Journal of Hospitality Management, 94, 102861. https://doi.org/10.1016/j.ijhm.2021.102861
+Chatziladas, R. (2021). Predicting hotel booking demand and cancellations using machine learning and comparison of feature importance. Thesis submitted in partial fulfillment of the requirements for the degree of Master of Science in Data Science & Society, School of Humanities and Digital Sciences, Tilburg University. https://arno.uvt.nl/show.cgi?fid=180514
 
-Shrestha, A., & Jeong, S. R. (2020). Predicting hotel cancellation with class imbalance using SMOTE and random forest. Sustainability, 12(19), 8043. https://doi.org/10.3390/su12198043
+Shrestha, A., & Jeong, S. R. (2020). Predicting hotel cancellation with class imbalance using SMOTE and random forest. Sustainability, 12(19), 8043. https://www.mdpi.com/2227-9717/9/10/1713
 
 Fernández-Torres, Y., Gutiérrez-Barroso, J., & Lorenzo-Alegría, R. (2019). Machine Learning models applied to hotel booking cancellation. An opportunity for businesses and research. International Journal of Scientific Management and Tourism, 5(1), 3-33.
 
