@@ -107,6 +107,28 @@ Siguiendo la metodología propuesta, se realizó el preprocesamiento de los dato
 
 Tras el preprocesamiento, los datos están listos para la fase de modelado, que incluirá la evaluación de diferentes algoritmos de clasificación.
 
+### Modelado y evaluación
+
+Se entrenaron tres algoritmos de clasificación: Regresión Logística como línea base, Random Forest y Gradient Boosting. Cada modelo fue optimizado mediante validación cruzada y búsqueda de hiperparámetros (GridSearchCV).
+
+Los resultados mostraron un desempeño superior de los algoritmos basados en ensambles de árboles:
+
+| Modelo              | Accuracy | Precision | Recall | F1-Score | ROC AUC |
+|---------------------|----------|-----------|--------|----------|---------|
+| Regresión Logística | 0.7859   | 0.6438    | 0.7762 | 0.7038   | 0.8711  |
+| Random Forest       | 0.9031   | 0.8642    | 0.8355 | 0.8496   | 0.9577  |
+| Gradient Boosting   | 0.9017   | 0.8778    | 0.8132 | 0.8443   | 0.9590  |
+
+El modelo de Gradient Boosting obtuvo el mejor resultado en términos de ROC AUC (0.9590), lo que indica su capacidad superior para discriminar entre reservas que serán canceladas y las que no.
+
+El análisis de importancia de características confirmó los hallazgos del EDA: el tiempo de anticipación (`lead_time`) es el predictor más importante, seguido por el precio promedio por habitación (`avg_price_per_room`), el número de solicitudes especiales (`no_of_special_requests`) y el segmento de mercado, especialmente "Online".
+
+![Matriz de Confusión - Gradient Boosting](images/matriz-confusion-gb.png)
+![Comparación de Curvas ROC](images/comparacion-roc.png)
+![Importancia de Características - Gradient Boosting](images/importancia-caracteristicas-gb.png)
+
+Estos resultados confirman que es posible predecir con alta precisión la probabilidad de cancelación de una reserva hotelera basándose en sus características, lo que permite a los hoteles implementar estrategias proactivas para mitigar el impacto económico de las cancelaciones.
+
 ### Revisión de la literatura y estado del arte
 
 La predicción de cancelaciones de reservas hoteleras ha sido ampliamente estudiada en la literatura reciente debido a su impacto directo en la rentabilidad y gestión operativa de los hoteles. 
