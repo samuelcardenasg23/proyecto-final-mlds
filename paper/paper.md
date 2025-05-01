@@ -197,16 +197,16 @@ Esta relación no es simplemente lineal, sino que muestra un patrón donde:
 Los diagramas de fuerza SHAP nos permiten entender por qué el modelo predice cancelación o no cancelación para casos específicos. Por ejemplo:
 
 **Caso de una reserva cancelada**:
-- Un bajo número de solicitudes especiales (valor=-0.7893) aumenta la probabilidad de cancelación (SHAP=0.9839).
-- Un precio promedio por habitación bajo (valor=-0.8643) disminuye la probabilidad (SHAP=-0.8307).
-- Pertenecer al segmento de mercado "Online" (valor=1.0000) aumenta la probabilidad (SHAP=0.6943).
-- Un alto número de noches entre semana (valor=4.1176) aumenta la probabilidad (SHAP=0.5333).
+- Un bajo número de solicitudes especiales (valor=-0.7893) aumenta la probabilidad de cancelación (SHAP=1.3169).
+- Un precio promedio por habitación bajo (valor=-0.8643) disminuye la probabilidad (SHAP=-1.3369).
+- Pertenecer al segmento de mercado "Online" (valor=1.0000) aumenta la probabilidad (SHAP=0.7437).
+- Un alto número de noches entre semana (valor=4.1176) aumenta la probabilidad (SHAP=0.6945).
 
 ![Force Plot - Cancelada](images/shap_force_plot_canceled.png)
 
 **Caso de una reserva no cancelada**:
-- Un bajo tiempo de anticipación (valor=-0.8286) disminuye significativamente la probabilidad de cancelación (SHAP=-1.5277).
-- La presencia de solicitudes especiales (valor=0.4839) también reduce la probabilidad (SHAP=-0.6453).
+- Un bajo tiempo de anticipación (valor=-0.8286) disminuye significativamente la probabilidad de cancelación (SHAP=-1.8513).
+- La presencia de solicitudes especiales (valor=0.4839) también reduce la probabilidad (SHAP=-0.8551).
 - El mes de llegada y el segmento de mercado tienen efectos contrapuestos en este caso particular.
 
 ![Force Plot - No Cancelada](images/shap_force_plot_not_canceled.png)
