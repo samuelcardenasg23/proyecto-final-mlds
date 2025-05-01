@@ -102,16 +102,13 @@ Para abordar la predicción de cancelaciones de reservas de hotel, se seguirá u
      - Regresión Logística (como línea base)
      - Random Forest
      - Gradient Boosting
-   - Para cada modelo se utilizará validación cruzada con k=5 pliegues para evaluar su rendimiento
+     - Red neuronal Multi-layer Perceptron classifier.
+   - Para cada modelo se encontraran los mejores parametros utilizando un grid search variando diferentes hiperametros con validación cruzada con k=5 pliegues estratificada.
    
 3. **Evaluación y comparación de modelos**:
-   - Métricas principales: AUC-ROC, precisión, recall, F1-score
-   - Análisis de la curva ROC y matriz de confusión
-   - Interpretación de feature importance para los modelos basados en árboles
-   
-4. **Ajuste de hiperparámetros**:
-   - Optimización mediante Grid Search o Random Search para los modelos con mejor desempeño inicial
-   - Reevaluación con el conjunto de prueba
+   - Métricas principales: AUC-ROC, precisión, recall, F1-score.
+   - Análisis de la curva ROC y matriz de confusión.
+   - Interpretación de feature importance para los modelos basados en árboles.
 
 ### Preprocesamiento de datos
 
@@ -135,15 +132,29 @@ Tras el preprocesamiento, los datos están listos para la fase de modelado, que 
 
 Se entrenaron tres algoritmos de clasificación: Regresión Logística como línea base, Random Forest y Gradient Boosting. Cada modelo fue optimizado mediante validación cruzada y búsqueda de hiperparámetros (GridSearchCV).
 
-Los resultados mostraron un desempeño superior de los algoritmos basados en ensambles de árboles:
+A continuacion se muestran los resultados de las metricas de evaluacion de los modelos tanto par el conjunto de entrenamietno como para el conjunto de test. Los modelos basados en ensambles de árboles mostraron un desempeño superior.
 
+**Metricas conjunto de entrenamiento**
 | Modelo              | Accuracy | Precision | Recall | F1-Score | ROC AUC |
 |---------------------|----------|-----------|--------|----------|---------|
-| Regresión Logística | 0.7859   | 0.6438    | 0.7762 | 0.7038   | 0.8711  |
-| Random Forest       | 0.9031   | 0.8642    | 0.8355 | 0.8496   | 0.9577  |
-| Gradient Boosting   | 0.9017   | 0.8778    | 0.8132 | 0.8443   | 0.9590  |
+| Regresión Logística | 0.7788   | 0.6341    | 0.7677 | 0.6945   | 0.8621  |
+| Random Forest       | 0.9796   | 0.9635    | 0.9748 | 0.9691   | 0.9978  |
+| Gradient Boosting   | 0.9718   | 0.9671    | 0.9462 | 0.9565   | 0.9963  |
+| Red Neuronal        | 0.9206   | 0.8842    | 0.8718 | 0.8779   | 0.9766  |
 
-El modelo de Gradient Boosting obtuvo el mejor resultado en términos de ROC AUC (0.9590), lo que indica su capacidad superior para discriminar entre reservas que serán canceladas y las que no.
+**Metricas conjunto de test**
+| Modelo              | Accuracy | Precision | Recall | F1-Score | ROC AUC |
+|---------------------|----------|-----------|--------|----------|---------|
+| Regresión Logística | 0.7861   | 0.6439    | 0.7766 | 0.7040   | 0.8711  |
+| Random Forest       | 0.9043   | 0.8719    | 0.8300 | 0.8504   | 0.9580  |
+| Gradient Boosting   | 0.9052   | 0.8809    | 0.8216 | 0.8502   | 0.9602  |
+| Red Neuronal        | 0.8652   | 0.7978    | 0.7884 | 0.7931   | 0.9305  |
+
+De acuerdo a la metrica ROC-ACU en la que se baso el entrenameinto de los modelos se observa resultados similares entre conjuntos de entrenamiento y validacion, de los que se puede concluir que no hubo sobrenetrenamiento.
+
+#### Selección del modelo
+
+De acuerdo a las metricas de evaluacion se selecciona el modelo de Gradient Boosting ya que obtuvo el mejor resultado en términos de ROC AUC (0.9602) en test, lo que indica su capacidad superior para discriminar entre reservas que serán canceladas y las que no. Ademas de los resultados se puede concluir que modelos mas simples como la regresion logistica no logran predecir el comportamiento de los datos, sin embargo, modelos mas complejos que el gradient boosting como una red neuronal tampoco mejoran el desempeño del ensamble, ademas de disminuir la interpretabilidad y aumentar complejidad en una futura implementacion del modelo.
 
 El análisis de importancia de características confirmó los hallazgos del EDA: el tiempo de anticipación (`lead_time`) es el predictor más importante, seguido por el precio promedio por habitación (`avg_price_per_room`), el número de solicitudes especiales (`no_of_special_requests`) y el segmento de mercado, especialmente "Online".
 
@@ -293,6 +304,7 @@ Este proyecto se ejecutará en un período de seis semanas, siguiendo un plan es
 **Fase 4: Modelado y evaluación (Semana 4)**
 - Entrenamiento del modelo base (Regresión Logística) (1 día)
 - Entrenamiento de modelos avanzados (Random Forest, Gradient Boosting) (2 días)
+- Entrenamiento de red neuronal Multi-layer Perceptron (MLP).
 - Evaluación y comparación de modelos (1 día)
 - Ajuste de hiperparámetros (2 días)
 - Selección del mejor modelo (1 día)
